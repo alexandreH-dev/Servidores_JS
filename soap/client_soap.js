@@ -1,44 +1,65 @@
-const soap = require('soap');
+// SOAP
+const soap = require('strong-soap').soap;
 
 const url = 'http://localhost:8000/soap?wsdl';
 
-// Exemplo de chamada aos métodos do serviço SOAP
-soap.createClient(url, (err, client) => {
+const requestArgs = {
+  a: 1,
+  b: 7
+};
+
+const id_user = {
+  id_usuario: 1
+};
+const id_play = {
+  id_playlist: 1
+};
+const id_music = {
+  id_musica: 1
+};
+
+soap.createClient(url, {}, (err, client) => {
+  if (err) {
+    return console.error('Erro ao criar cliente SOAP:', err);
+  }
+
+  client.Listar_Usuarios((err, result) => {
     if (err) {
-        return console.error('Erro ao criar cliente SOAP:', err);
+      console.error('Erro na chamada SOAP:', err);
+    } else {
+      console.log('Resultado - Listar_Usuarios:\n', JSON.parse(result.result));
     }
+  });
 
-    console.log('Cliente SOAP criado com sucesso!\n');
+  client.Listar_Musicas((err, result) => {
+    if (err) {
+      console.error('Erro na chamada SOAP:', err);
+    } else {
+      console.log('Resultado - Listar_Musicas:\n', JSON.parse(result.result));
+    }
+  });
 
-    // 1. Listar usuários
-    client.listar_usuarios({}, (err, result) => {
-        if (err) return console.error('Erro em listar_usuarios:', err);
-        console.log(result)
-        console.log('Usuários:', result.return);
-    });
+  client.Listar_Playlist_Usuario(id_user, (err, result) => {
+    if (err) {
+      console.error('Erro na chamada SOAP:', err);
+    } else {
+      console.log('Resultado - Listar_Playlist_Usuario:\n', JSON.parse(result.result));
+    }
+  });
 
-    // 2. Listar músicas
-    client.listar_musicas({}, (err, result) => {
-        if (err) return console.error('Erro em listar_musicas:', err);
-        console.log('Músicas:', result.return);
-    });
+  client.Listar_Musicas_Playlist(id_play, (err, result) => {
+    if (err) {
+      console.error('Erro na chamada SOAP:', err);
+    } else {
+      console.log('Resultado - Listar_Musicas_Playlist:\n', JSON.parse(result.result));
+    }
+  });
 
-    // 3. Listar playlists de um usuário (substitua o ID conforme necessário)
-    client.listar_playlists_usuario({ usuario_id: 1 }, (err, result) => {
-        if (err) return console.error('Erro em listar_playlists_usuario:', err);
-        console.log('Playlists do usuário 1:', result.return);
-    });
-
-    // 4. Listar músicas de uma playlist
-    client.listar_musicas_playlist({ playlist_id: 1 }, (err, result) => {
-        if (err) return console.error('Erro em listar_musicas_playlist:', err);
-        console.log('Músicas da playlist 1:', result.return);
-    });
-
-    // 5. Listar playlists que contêm uma música
-    client.listar_playlists_musica({ musica_id: 1 }, (err, result) => {
-        if (err) return console.error('Erro em listar_playlists_musica:', err);
-        console.log('Playlists que contêm a música 1:', result.return);
-    });
+  client.Listar_Playlist_Musica(id_music, (err, result) => {
+    if (err) {
+      console.error('Erro na chamada SOAP:', err);
+    } else {
+      console.log('Resultado - Listar_Playlist_Musica:\n', JSON.parse(result.result));
+    }
+  });
 });
-

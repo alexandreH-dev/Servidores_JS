@@ -1,169 +1,144 @@
-<wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdlsoap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdlsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="spyne.streaming.soap" targetNamespace="spyne.streaming.soap" name="Application">
-<wsdl:types>
-<xs:schema targetNamespace="spyne.streaming.soap" elementFormDefault="qualified">
-<xs:complexType name="stringArray">
-<xs:sequence>
-<xs:element name="string" type="xs:string" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="listar_musicas"/>
-<xs:complexType name="listar_usuarios"/>
-<xs:complexType name="listar_musicasResponse">
-<xs:sequence>
-<xs:element name="listar_musicasResult" type="tns:stringArray" minOccurs="0" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="listar_musicas_playlist">
-<xs:sequence>
-<xs:element name="playlist_id" type="xs:integer" minOccurs="0" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="listar_musicas_playlistResponse">
-<xs:sequence>
-<xs:element name="listar_musicas_playlistResult" type="tns:stringArray" minOccurs="0" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="listar_playlists_musica">
-<xs:sequence>
-<xs:element name="musica_id" type="xs:integer" minOccurs="0" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="listar_playlists_musicaResponse">
-<xs:sequence>
-<xs:element name="listar_playlists_musicaResult" type="tns:stringArray" minOccurs="0" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="listar_playlists_usuario">
-<xs:sequence>
-<xs:element name="usuario_id" type="xs:integer" minOccurs="0" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="listar_playlists_usuarioResponse">
-<xs:sequence>
-<xs:element name="listar_playlists_usuarioResult" type="tns:stringArray" minOccurs="0" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:complexType name="listar_usuariosResponse">
-<xs:sequence>
-<xs:element name="listar_usuariosResult" type="tns:stringArray" minOccurs="0" nillable="true"/>
-</xs:sequence>
-</xs:complexType>
-<xs:element name="stringArray" type="tns:stringArray"/>
-<xs:element name="listar_musicas" type="tns:listar_musicas"/>
-<xs:element name="listar_usuarios" type="tns:listar_usuarios"/>
-<xs:element name="listar_musicasResponse" type="tns:listar_musicasResponse"/>
-<xs:element name="listar_musicas_playlist" type="tns:listar_musicas_playlist"/>
-<xs:element name="listar_musicas_playlistResponse" type="tns:listar_musicas_playlistResponse"/>
-<xs:element name="listar_playlists_musica" type="tns:listar_playlists_musica"/>
-<xs:element name="listar_playlists_musicaResponse" type="tns:listar_playlists_musicaResponse"/>
-<xs:element name="listar_playlists_usuario" type="tns:listar_playlists_usuario"/>
-<xs:element name="listar_playlists_usuarioResponse" type="tns:listar_playlists_usuarioResponse"/>
-<xs:element name="listar_usuariosResponse" type="tns:listar_usuariosResponse"/>
-</xs:schema>
-</wsdl:types>
-<wsdl:message name="listar_usuarios">
-<wsdl:part name="listar_usuarios" element="tns:listar_usuarios"/>
-</wsdl:message>
-<wsdl:message name="listar_usuariosResponse">
-<wsdl:part name="listar_usuariosResponse" element="tns:listar_usuariosResponse"/>
-</wsdl:message>
-<wsdl:message name="listar_musicas">
-<wsdl:part name="listar_musicas" element="tns:listar_musicas"/>
-</wsdl:message>
-<wsdl:message name="listar_musicasResponse">
-<wsdl:part name="listar_musicasResponse" element="tns:listar_musicasResponse"/>
-</wsdl:message>
-<wsdl:message name="listar_playlists_usuario">
-<wsdl:part name="listar_playlists_usuario" element="tns:listar_playlists_usuario"/>
-</wsdl:message>
-<wsdl:message name="listar_playlists_usuarioResponse">
-<wsdl:part name="listar_playlists_usuarioResponse" element="tns:listar_playlists_usuarioResponse"/>
-</wsdl:message>
-<wsdl:message name="listar_musicas_playlist">
-<wsdl:part name="listar_musicas_playlist" element="tns:listar_musicas_playlist"/>
-</wsdl:message>
-<wsdl:message name="listar_musicas_playlistResponse">
-<wsdl:part name="listar_musicas_playlistResponse" element="tns:listar_musicas_playlistResponse"/>
-</wsdl:message>
-<wsdl:message name="listar_playlists_musica">
-<wsdl:part name="listar_playlists_musica" element="tns:listar_playlists_musica"/>
-</wsdl:message>
-<wsdl:message name="listar_playlists_musicaResponse">
-<wsdl:part name="listar_playlists_musicaResponse" element="tns:listar_playlists_musicaResponse"/>
-</wsdl:message>
-<wsdl:service name="StreamingService">
-<wsdl:port name="Application" binding="tns:Application">
-<wsdlsoap11:address location="http://localhost:8000/soap"/>
-</wsdl:port>
-</wsdl:service>
-<wsdl:portType name="Application">
-<wsdl:operation name="listar_usuarios" parameterOrder="listar_usuarios">
-<wsdl:input name="listar_usuarios" message="tns:listar_usuarios"/>
-<wsdl:output name="listar_usuariosResponse" message="tns:listar_usuariosResponse"/>
-</wsdl:operation>
-<wsdl:operation name="listar_musicas" parameterOrder="listar_musicas">
-<wsdl:input name="listar_musicas" message="tns:listar_musicas"/>
-<wsdl:output name="listar_musicasResponse" message="tns:listar_musicasResponse"/>
-</wsdl:operation>
-<wsdl:operation name="listar_playlists_usuario" parameterOrder="listar_playlists_usuario">
-<wsdl:input name="listar_playlists_usuario" message="tns:listar_playlists_usuario"/>
-<wsdl:output name="listar_playlists_usuarioResponse" message="tns:listar_playlists_usuarioResponse"/>
-</wsdl:operation>
-<wsdl:operation name="listar_musicas_playlist" parameterOrder="listar_musicas_playlist">
-<wsdl:input name="listar_musicas_playlist" message="tns:listar_musicas_playlist"/>
-<wsdl:output name="listar_musicas_playlistResponse" message="tns:listar_musicas_playlistResponse"/>
-</wsdl:operation>
-<wsdl:operation name="listar_playlists_musica" parameterOrder="listar_playlists_musica">
-<wsdl:input name="listar_playlists_musica" message="tns:listar_playlists_musica"/>
-<wsdl:output name="listar_playlists_musicaResponse" message="tns:listar_playlists_musicaResponse"/>
-</wsdl:operation>
-</wsdl:portType>
-<wsdl:binding name="Application" type="tns:Application">
-<wsdlsoap11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-<wsdl:operation name="listar_usuarios">
-<wsdlsoap11:operation soapAction="listar_usuarios" style="document"/>
-<wsdl:input name="listar_usuarios">
-<wsdlsoap11:body use="literal"/>
-</wsdl:input>
-<wsdl:output name="listar_usuariosResponse">
-<wsdlsoap11:body use="literal"/>
-</wsdl:output>
-</wsdl:operation>
-<wsdl:operation name="listar_musicas">
-<wsdlsoap11:operation soapAction="listar_musicas" style="document"/>
-<wsdl:input name="listar_musicas">
-<wsdlsoap11:body use="literal"/>
-</wsdl:input>
-<wsdl:output name="listar_musicasResponse">
-<wsdlsoap11:body use="literal"/>
-</wsdl:output>
-</wsdl:operation>
-<wsdl:operation name="listar_playlists_usuario">
-<wsdlsoap11:operation soapAction="listar_playlists_usuario" style="document"/>
-<wsdl:input name="listar_playlists_usuario">
-<wsdlsoap11:body use="literal"/>
-</wsdl:input>
-<wsdl:output name="listar_playlists_usuarioResponse">
-<wsdlsoap11:body use="literal"/>
-</wsdl:output>
-</wsdl:operation>
-<wsdl:operation name="listar_musicas_playlist">
-<wsdlsoap11:operation soapAction="listar_musicas_playlist" style="document"/>
-<wsdl:input name="listar_musicas_playlist">
-<wsdlsoap11:body use="literal"/>
-</wsdl:input>
-<wsdl:output name="listar_musicas_playlistResponse">
-<wsdlsoap11:body use="literal"/>
-</wsdl:output>
-</wsdl:operation>
-<wsdl:operation name="listar_playlists_musica">
-<wsdlsoap11:operation soapAction="listar_playlists_musica" style="document"/>
-<wsdl:input name="listar_playlists_musica">
-<wsdlsoap11:body use="literal"/>
-</wsdl:input>
-<wsdl:output name="listar_playlists_musicaResponse">
-<wsdlsoap11:body use="literal"/>
-</wsdl:output>
-</wsdl:operation>
-</wsdl:binding>
-</wsdl:definitions>
+<?xml version="1.0"?>
+<definitions name="SpotifyService"
+  targetNamespace="http://example.com/soap"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:tns="http://example.com/soap"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <message name="Listar_UsuariosRequest" />
+  <message name="Listar_UsuariosResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+
+  <message name="Listar_MusicasRequest" />
+  <message name="Listar_MusicasResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+
+  <message name="Listar_Playlist_UsuarioRequest">
+    <part name="id_usuario" type="xsd:int" />
+  </message>
+  <message name="Listar_Playlist_UsuarioResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+
+  <message name="Listar_Musicas_PlaylistRequest">
+    <part name="id_playlist" type="xsd:int" />
+  </message>
+  <message name="Listar_Musicas_PlaylistResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+
+  <message name="Listar_Playlist_MusicaRequest">
+    <part name="id_musica" type="xsd:int" />
+  </message>
+  <message name="Listar_Playlist_MusicaResponse">
+    <part name="result" type="xsd:string" />
+  </message>
+
+
+  <portType name="SpotifyPortType">
+    <operation name="Listar_Usuarios">
+      <input message="tns:Listar_UsuariosRequest" />
+      <output message="tns:Listar_UsuariosResponse" />
+    </operation>
+    <operation name="Listar_Musicas">
+      <input message="tns:Listar_MusicasRequest" />
+      <output message="tns:Listar_MusicasResponse" />
+    </operation>
+    <operation name="Listar_Playlist_Usuario">
+      <input message="tns:Listar_Playlist_UsuarioRequest" />
+      <output message="tns:Listar_Playlist_UsuarioResponse" />
+    </operation>
+    <operation name="Listar_Musicas_Playlist">
+      <input message="tns:Listar_Musicas_PlaylistRequest" />
+      <output message="tns:Listar_Musicas_PlaylistResponse" />
+    </operation>
+    <operation name="Listar_Playlist_Musica">
+      <input message="tns:Listar_Playlist_MusicaRequest" />
+      <output message="tns:Listar_Playlist_MusicaResponse" />
+    </operation>
+  </portType>
+
+
+  <binding name="SpotifyBinding" type="tns:SpotifyPortType">
+    <soap:binding style="rpc"
+      transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="Listar_Usuarios">
+      <soap:operation soapAction="listar_usuarios" />
+      <input>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+
+    </operation>
+    <operation name="Listar_Musicas">
+      <soap:operation soapAction="listar_musicas" />
+      <input>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Listar_Playlist_Usuario">
+      <soap:operation soapAction="listar_playlist_usuario" />
+      <input>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Listar_Musicas_Playlist">
+      <soap:operation soapAction="listar_musicas_playlist" />
+      <input>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="Listar_Playlist_Musica">
+      <soap:operation soapAction="listar_playlist_musica" />
+      <input>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body
+          use="encoded" namespace="http://example.com/soap"
+          encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+
+
+  <service name="SpotifyService">
+    <documentation>Simple Spotify SOAP Service</documentation>
+    <port name="SpotifyPort" binding="tns:SpotifyBinding">
+      <soap:address location="http://localhost:8000/soap" />
+    </port>
+  </service>
+</definitions>
