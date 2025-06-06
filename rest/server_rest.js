@@ -24,7 +24,9 @@ app.get('/usuarios', async (req, res) => {
   try {
     const data = await queryDB('SELECT * FROM Usuario');
     res.json(data);
+    console.log("Listar_Usuarios - GET 200");
   } catch (err) {
+    console.log("Listar_Usuarios - GET 500");
     res.status(500).json({ error: err.message });
   }
 });
@@ -34,7 +36,9 @@ app.get('/musicas', async (req, res) => {
   try {
     const data = await queryDB('SELECT * FROM Musica');
     res.json(data);
+    console.log("Listar_Musicas - GET 200");
   } catch (err) {
+    console.log("Listar_Musicas - GET 500");
     res.status(500).json({ error: err.message });
   }
 });
@@ -45,7 +49,9 @@ app.get('/playlists/usuario/:id_usuario', async (req, res) => {
   try {
     const data = await queryDB('SELECT * FROM Playlist WHERE id_usuario = ?', [id_usuario]);
     res.json(data);
+    console.log("Listar_Playlist_Usuario - GET 200");
   } catch (err) {
+    console.log("Listar_Playlist_Usuario - GET 500");
     res.status(500).json({ error: err.message });
   }
 });
@@ -61,7 +67,9 @@ app.get('/musicas/playlist/:id_playlist', async (req, res) => {
   try {
     const data = await queryDB(sql, [id_playlist]);
     res.json(data);
+    console.log("Listar_Musicas_Playlist - GET 200");
   } catch (err) {
+    console.log("Listar_Musicas_Playlist - GET 500");
     res.status(500).json({ error: err.message });
   }
 });
@@ -70,14 +78,16 @@ app.get('/musicas/playlist/:id_playlist', async (req, res) => {
 app.get('/playlists/musica/:id_musica', async (req, res) => {
   const id_musica = req.params.id_musica;
   const sql = `
-    SELECT Playlist.* FROM Playlist
-    JOIN Playlist_Musica ON Playlist.id = Playlist_Musica.id_playlist
-    WHERE Playlist_Musica.id_musica = ?
+  SELECT Playlist.* FROM Playlist
+  JOIN Playlist_Musica ON Playlist.id = Playlist_Musica.id_playlist
+  WHERE Playlist_Musica.id_musica = ?
   `;
   try {
     const data = await queryDB(sql, [id_musica]);
     res.json(data);
+    console.log("Listar_Playlist_Musica - GET 200");
   } catch (err) {
+    console.log("Listar_Playlist_Musica - GET 500");
     res.status(500).json({ error: err.message });
   }
 });

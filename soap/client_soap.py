@@ -22,7 +22,7 @@ for item in musicas:
 # Chamada para Listar_Playlist_Usuario
 print("Listar_Playlist_Usuario:", )
 playlists = json.loads(client.service.Listar_Playlist_Usuario(id_usuario=1))
-for item in musicas:
+for item in playlists:
   print(item)
   
 # Chamada para Listar_Musicas_Playlist
