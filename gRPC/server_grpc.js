@@ -27,7 +27,9 @@ const spotifyService = {
     try {
       const rows = await queryDB('SELECT * FROM Usuario');
       callback(null, { usuarios: rows });
+      console.log("ListarUsuarios - 200");
     } catch (err) {
+      console.log("ListarUsuarios - 500");
       callback(err);
     }
   },
@@ -36,7 +38,9 @@ const spotifyService = {
     try {
       const rows = await queryDB('SELECT * FROM Musica');
       callback(null, { musicas: rows });
+      console.log("ListarMusicas - 200");
     } catch (err) {
+      console.log("ListarMusicas - 500");
       callback(err);
     }
   },
@@ -45,7 +49,9 @@ const spotifyService = {
     try {
       const rows = await queryDB('SELECT * FROM Playlist WHERE id_usuario = ?', [request.usuarioId]);
       callback(null, { playlists: rows });
+      console.log("ListarPlaylistsPorUsuario - 200");
     } catch (err) {
+      console.log("ListarPlaylistsPorUsuario - 500");
       callback(err);
     }
   },
@@ -59,7 +65,9 @@ const spotifyService = {
       `;
       const rows = await queryDB(sql, [request.playlistId]);
       callback(null, { musicas: rows });
+      console.log("ListarMusicasPorPlaylist - 200");
     } catch (err) {
+      console.log("ListarMusicasPorPlaylist - 500");
       callback(err);
     }
   },
@@ -73,7 +81,9 @@ const spotifyService = {
       `;
       const rows = await queryDB(sql, [request.musicaId]);
       callback(null, { playlists: rows });
+      console.log("ListarPlaylistsPorMusica - 200");
     } catch (err) {
+      console.log("ListarPlaylistsPorMusica - 500");
       callback(err);
     }
   }
