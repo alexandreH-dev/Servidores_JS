@@ -49,25 +49,38 @@ const schema = buildSchema(`
 
 // Resolvers
 const root = {
-  usuarios: () => queryDB('SELECT * FROM Usuario'),
-  musicas: () => queryDB('SELECT * FROM Musica'),
+  usuarios: () => {
+    console.log("usuarios");
+    return queryDB('SELECT * FROM Usuario');
+  },
 
-  playlistsUsuario: ({ usuarioId }) =>
-    queryDB('SELECT * FROM Playlist WHERE id_usuario = ?', [usuarioId]),
+  musicas: () => {
+    console.log("musicas");
+    return queryDB('SELECT * FROM Musica')
+  },
 
-  musicasPlaylist: ({ playlistId }) =>
-    queryDB(`
+  playlistsUsuario: ({ usuarioId }) => {
+    console.log("playlistsUsuario");
+    return queryDB('SELECT * FROM Playlist WHERE id_usuario = ?', [usuarioId])
+  },
+
+  musicasPlaylist: ({ playlistId }) => {
+    console.log("musicasPlaylist");
+    return queryDB(`
       SELECT Musica.* FROM Musica
       JOIN Playlist_Musica ON Musica.id = Playlist_Musica.id_musica
       WHERE Playlist_Musica.id_playlist = ?
-    `, [playlistId]),
+    `, [playlistId]);
+  },
 
-  playlistsMusica: ({ musicaId }) =>
-    queryDB(`
+  playlistsMusica: ({ musicaId }) => {
+    console.log("playlistsMusica");
+    return queryDB(`
       SELECT Playlist.* FROM Playlist
       JOIN Playlist_Musica ON Playlist.id = Playlist_Musica.id_playlist
       WHERE Playlist_Musica.id_musica = ?
-    `, [musicaId]),
+    `, [musicaId])
+  }
 };
 
 // Inicializa o servidor Express + GraphQL
