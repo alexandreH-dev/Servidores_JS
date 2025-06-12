@@ -19,8 +19,9 @@ def menu():
 
             if opcao == "1":
                 resposta = stub.ListarUsuarios(spotify_pb2.Empty())
-                for u in resposta.usuarios:
-                    print(f"ID: {u.id}, Nome: {u.nome}, Idade: {u.idade}")
+                print(resposta.usuarios)
+                # for u in resposta.usuarios:
+                #     print(f"ID: {u.id}, Nome: {u.nome}, Idade: {u.idade}")
 
             elif opcao == "2":
                 resposta = stub.ListarMusicas(spotify_pb2.Empty())
