@@ -17,6 +17,8 @@ cursor = conn.cursor()
 # for _ in range(100):
 #     cursor.execute(insert_query)
 
+# cursor.execute("DELETE FROM Usuario Where id > 1000;")
+
 cursor.execute("SELECT COUNT(*) FROM Usuario")
 
 # Obtendo o resultado
